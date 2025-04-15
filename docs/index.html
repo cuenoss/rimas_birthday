@@ -1,1 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎂 Happy Birthday Rima! 🎉</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.3.0"></script>
+    <style>
 
+
+        body {
+            background-image: url('fc-barcelona-desktop-background.jpg');
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            color: white;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 4.5em;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 64, 129, 1);
+            animation: fadeInUp 1.5s ease-in-out, glow 1.5s infinite alternate;
+        }
+
+        p {
+            font-size: 2.2em;
+            opacity: 0;
+            animation: fadeIn 2s ease-in-out forwards;
+            font-weight: bold;
+            margin-top: 15px;
+            letter-spacing: 2px;
+            
+        }
+
+        #countdown {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-top: 20px;
+            opacity: 0;
+            animation: fadeIn 3s ease-in-out forwards;
+            text-transform: uppercase;
+        }
+
+        /* 🎁 Surprise Button */
+        .btn {
+            background: linear-gradient(45deg, #ff4b2b, #ff416c);
+            color: white;
+            border: none;
+            padding: 20px 50px;
+            font-size: 2em;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 30px;
+            border-radius: 50px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 15px 40px rgba(255, 64, 129, 0.6);
+            animation: fadeIn 2.8s ease-in-out forwards;
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 25px 60px rgba(255, 64, 129, 0.8);
+        }
+
+        /* 🎨 Animated Birthday Card (enhanced folding effect) */
+        .card-container {
+            perspective: 1000px;
+            display: none;
+            margin-top: 20px;
+        }
+
+        .card {
+            width: 240px;
+            height: 240px;
+            background: hsl(0, 0%, 0%);
+            color: #333;
+            font-family: 'Georgia', serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 2em;
+            font-weight: bold;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            transform-style: preserve-3d;
+            transform: scaleY(0);
+            transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1), box-shadow 0.5s ease-in-out;
+        }
+        
+        video{
+            border-radius: 20px;  
+        }
+        .card.show {
+            transform: scaleY(1);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 64, 129, 1); }
+            100% { text-shadow: 0 0 30px rgba(255, 255, 255, 1), 0 0 60px rgba(255, 64, 129, 1); }
+        }
+    </style>
+</head>
+<body>
+  
+    <h1> Happy Birthday Rima! 🎂</h1>
+    
+    <!-- Audio element (Hidden) -->
+    <audio id="bgMusic" src="c:\Users\user\Music\[mp3juice.blog] Harry Styles - Watermelon Sugar (Lyrics).mp3" ></audio>
+
+    <script>
+        document.addEventListener("click", function() {
+            let music = document.getElementById("bgMusic");
+            if (music.paused) {
+                music.play();
+            }
+        }, { once: true }); // Ensures it only triggers once
+    </script>
+    <p>Countdown :</p>
+    <div id="countdown">Loading...</div>
+    <button class="btn" onclick="showSurprise()">🎁 click to see your gift!</button>
+
+    <!-- 🎨 Animated Birthday Card -->
+    <div class="card-container">
+        <div class="card"> <video width="320" height="240" autoplay>
+            <source src="Download (1).mp4" type="video/mp4">
+          </video>
+           </div>
+    </div>
+
+   <audio id="birthdaySong" src="https://www.fesliyanstudios.com/play-mp3/387" preload="auto"></audio>
+
+
+
+
+    <script>
+        // Countdown (unchanged)
+        const birthday = new Date();
+        birthday.setHours(23, 59, 59, 999);
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const timeLeft = birthday - now;
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            if (timeLeft < 0) {
+                document.getElementById("countdown").innerHTML = "🎉 nchallah jibi 19, fl bac bsa7 psq BEM la3b drari! 🎈";
+            }
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // 🎁 Surprise Button Function
+        function showSurprise() {
+            document.getElementById("birthdaySong").play();
+            startConfetti();
+            showCard();
+        }
+
+        // 🎉 Confetti Effect
+        function startConfetti() {
+            let duration = 5 * 1000;
+            let end = Date.now() + duration;
+            (function frame() {
+                confetti({
+                    particleCount: 7,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 }
+                });
+                confetti({
+                    particleCount: 7,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 }
+                });
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            })();
+        }
+
+        // 🎨 Show the Animated Birthday Card (enhanced fold)
+        function showCard() {
+            let cardContainer = document.querySelector(".card-container");
+            let card = document.querySelector(".card");
+            cardContainer.style.display = "block";
+            setTimeout(() => {
+                card.classList.add("show");
+            }, 100);
+        }
+    </script>
+</body>
+</html>
